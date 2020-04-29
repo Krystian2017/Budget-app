@@ -7,7 +7,7 @@ import GlobalStyles from "./index.css";
 
 import theme from "utils/theme";
 
-import { Navigation, Wrapper, LoadingIndicator } from "components";
+import { Navigation, Wrapper, LoadingIndicator, Button } from "components";
 
 function App() {
   const { i18n } = useTranslation();
@@ -24,9 +24,24 @@ function App() {
           ]}
           RightElement={
             <div>
-              <button onClick={() => i18n.changeLanguage("pl")}>pl</button>
-              <button onClick={() => i18n.changeLanguage("en")}>en</button>
-              <button onClick={() => i18n.changeLanguage("nb")}>nb</button>
+              <Button
+                variant="regular"
+                onClick={() => i18n.changeLanguage("pl")}
+              >
+                pl
+              </Button>
+              <Button
+                variant="regular"
+                onClick={() => i18n.changeLanguage("en")}
+              >
+                en
+              </Button>
+              <Button
+                variant="regular"
+                onClick={() => i18n.changeLanguage("nb")}
+              >
+                nb
+              </Button>
             </div>
           }
         />
@@ -47,7 +62,7 @@ function App() {
 function RootApp() {
   return (
     <ThemeProvider theme={theme}>
-      <React.Suspense fallback={LoadingIndicator}>
+      <React.Suspense fallback={<LoadingIndicator />}>
         <App />
       </React.Suspense>
     </ThemeProvider>
