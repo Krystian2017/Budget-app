@@ -7,6 +7,8 @@ import GlobalStyles from "./index.css";
 
 import theme from "utils/theme";
 
+import Home from "./components/Home/index";
+
 import { Navigation, Wrapper, LoadingIndicator, Button } from "components";
 
 function App() {
@@ -49,7 +51,7 @@ function App() {
         <Wrapper>
           <Switch>
             <Route exact path="/">
-              Homepage
+              <Home />
             </Route>
             <Route path="/budget">Budgetpage</Route>
           </Switch>
