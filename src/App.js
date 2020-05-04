@@ -1,9 +1,14 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { ThemeProvider } from "styled-components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { connect } from "react-redux";
 
 import GlobalStyles from "./index.css";
+import {
+  fetchBudget,
+  fetchBudgetedCategories,
+} from "data/actions/budget.actions";
 
 import theme from "utils/theme";
 
@@ -11,7 +16,12 @@ import Home from "./components/Home/index";
 
 import { Navigation, Wrapper, LoadingIndicator, Button } from "components";
 
-function App() {
+function App({ budget, fetchBudget, fetchBudgetedCategories }) {
+  useEffect(() => {
+    fetchBudget(1);
+    fetchBudgetedCategories(1);
+  }, [fetchBudget, fetchBudgetedCategories]);
+
   const { i18n } = useTranslation();
 
   return (
@@ -61,11 +71,23 @@ function App() {
   );
 }
 
+const ConnectedApp = connect(
+  (state) => {
+    return {
+      budget: state.budget.budget,
+    };
+  },
+  {
+    fetchBudget,
+    fetchBudgetedCategories,
+  }
+)(App);
+
 function RootApp() {
   return (
     <ThemeProvider theme={theme}>
       <React.Suspense fallback={<LoadingIndicator />}>
-        <App />
+        <ConnectedApp />
       </React.Suspense>
     </ThemeProvider>
   );
