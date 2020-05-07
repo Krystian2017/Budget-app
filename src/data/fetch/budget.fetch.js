@@ -1,15 +1,15 @@
 export const fetchBudget = (id) => {
-  const promis = fetch(
+  const promise = fetch(
     `${process.env.REACT_APP_API_URL}/budgets/${id}/?_embed=transactions`
   );
 
-  return promis;
+  return promise;
 };
 
 export const fetchBudgetedCategories = (id) => {
-  const promis = fetch(
+  const promise = fetch(
     `${process.env.REACT_APP_API_URL}/budgets/${id}/budgetCategories`
   );
 
-  return promis;
+  return promise;
 };
